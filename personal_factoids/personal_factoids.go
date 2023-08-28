@@ -1,3 +1,10 @@
+/***************************************
+Personal Factoids
+Author: Lawjay Lee
+Date Completed: 2023-08-28
+Description: Prints personal factoids about myself to stdout
+***************************************/
+
 package main
 
 import "fmt"
