@@ -23,6 +23,7 @@ func NewDwelling(Id int, City string, State string, Bedrooms int, Bathrooms int,
 }
 
 func (dwelling Dwelling) printInfo() {
+    fmt.Println("Dwelling", dwelling.Id)
     fmt.Printf("Location: %s, %s\n", dwelling.City, dwelling.State)
     fmt.Printf("%d Bedrooms, %d Baths\n", dwelling.Bedrooms, dwelling.Bathrooms)
     fmt.Printf("Nightly Rate: $%d\n", dwelling.NightlyRate)
@@ -50,8 +51,7 @@ func main() {
         4: seattle,
     }
 
-    for i, dwelling := range dwellingIds {
-        fmt.Println("Dwelling", i)
+    for _, dwelling := range dwellingIds {
         dwelling.printInfo()
     }
 
