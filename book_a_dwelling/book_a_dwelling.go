@@ -51,9 +51,10 @@ func main() {
         4: seattle,
     }
 
-    for _, dwelling := range dwellingIds {
-        dwelling.printInfo()
-    }
+    losAngeles.printInfo()
+    newYork.printInfo()
+    chicago.printInfo()
+    seattle.printInfo()
 
     fmt.Println("Please select a dwelling number from the list above")
     var idChoice int
