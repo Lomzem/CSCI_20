@@ -18,14 +18,7 @@ type Dwelling struct {
     NightlyRate int
 }
 
-func NewDwelling(
-    Id int,
-    City string,
-    State string,
-    Bedrooms int,
-    Bathrooms int,
-    NightlyRate int) (Dwelling) {
-
+func NewDwelling(Id int, City string, State string, Bedrooms int, Bathrooms int, NightlyRate int) (Dwelling) {
     return Dwelling{Id, City, State, Bedrooms, Bathrooms, NightlyRate}
 }
 
@@ -45,7 +38,7 @@ func main() {
     fmt.Println("\nHere are your dwelling options:")
     fmt.Println()
 
-    var losAngeles Dwelling = NewDwelling(1,"Los Angeles", "CA", 4, 2, 300)
+    var losAngeles Dwelling = NewDwelling(1, "Los Angeles", "CA", 4, 2, 300)
     var newYork Dwelling = NewDwelling(2, "New York", "NY", 3, 1, 245)
     var chicago Dwelling = NewDwelling(3, "Chicago", "IL", 4, 1, 200)
     var seattle Dwelling = NewDwelling(4, "Seattle", "WA", 5, 3, 375)
@@ -75,5 +68,5 @@ func main() {
     dwellingChoice.printInfo()
 
     fmt.Println("Staying for", nightsChoice, "nights")
-    fmt.Print("Base price of your stay: $", dwellingChoice.calculateCosts(nightsChoice))
+    fmt.Print("\nBase price of your stay: $", dwellingChoice.calculateCosts(nightsChoice))
 }
