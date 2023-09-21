@@ -29,14 +29,14 @@ func (c Combo) Display() {
 func main() {
     var hamburger Combo = NewCombo("Hamburger", "Fries", 5.99)
     var burrito Combo = NewCombo("Burrito", "Rice", 4.99)
-    var salad Combo = NewCombo("Salad", "Breadsticks", 4.99)
+    var salad Combo = NewCombo("Salad", "Breadsticks", 4.49)
 
     fmt.Println("Combo 1:")
     hamburger.Display()
 
-    fmt.Println("Combo 2:")
+    fmt.Println("\nCombo 2:")
     burrito.Display()
 
-    fmt.Println("Combo 3:")
+    fmt.Println("\nCombo 3:")
     salad.Display()
 }
