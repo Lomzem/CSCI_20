@@ -75,9 +75,18 @@ func PromptMenuAndSelectCombo() Combo {
         menuItems[i - 1].Display()
     }
 
+    fmt.Printf("\nCombo %d:\n", len(menuItems) + 1)
+    fmt.Println("Custom Order")
+    fmt.Println("Price: $6.99")
+
     var orderNum int
     fmt.Println("\nPlease select your order number")
     fmt.Scanln(&orderNum)
+
+    if orderNum == len(menuItems) + 1 {
+        return customMenuChoice()
+    }
+
     return menuItems[orderNum - 1]
 }
 
@@ -96,9 +105,23 @@ func UpdateSizeAndDrink(c Combo) Combo {
     return c
 }
 
+func customMenuChoice() Combo {
+    var entree string
+    fmt.Println("Enter entree")
+    fmt.Scanln(&entree)
+
+    var side string
+    fmt.Println("Enter side")
+    fmt.Scanln(&side)
+
+    var customOrder Combo = NewCombo(entree, side, "Coke", 1, 6.99)
+    return customOrder
+}
+
 func main() {
     fmt.Println("Welcome to Eclectic Drive-Thru. What would you like to order?")
     var selectedCombo Combo = PromptMenuAndSelectCombo()
+
     selectedCombo = UpdateSizeAndDrink(selectedCombo)
 
     fmt.Println("\nHere is your order:")
