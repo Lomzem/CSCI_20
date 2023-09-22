@@ -16,10 +16,16 @@ type Combo struct {
 }
 
 func NewCombo(Entree string, Side string, Price float64) Combo {
-    return Combo{Entree, Side, Price}
+    var combo Combo
+
+    combo.Entree = Entree
+    combo.Side = Side
+    combo.Price = Price
+
+    return combo
 }
 
-func (c Combo) Display() {
+func (c *Combo) Display() {
     fmt.Println("Entree:", c.Entree)
     fmt.Println("Side:", c.Side)
     fmt.Print("Price: $", c.Price)
