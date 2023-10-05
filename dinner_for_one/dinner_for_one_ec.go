@@ -7,124 +7,126 @@ Description: Asks user to select combo, drink, size, then calculates price
 
 package main
 
-import "fmt"
+import (
+	"fmt"
+)
 
 type Combo struct {
-    Entree string
-    Side string
-    Drink string
-    Size int
-    Price float64
+	Entree string
+	Side   string
+	Drink  string
+	Size   int
+	Price  float64
 }
 
 func NewCombo(Entree string, Side string, Drink string, Size int, Price float64) Combo {
-    var combo Combo
-    combo.Entree = Entree
-    combo.Side = Side
-    combo.Drink = Drink
-    combo.Size = Size
-    combo.Price = Price
+	var combo Combo
+	combo.Entree = Entree
+	combo.Side = Side
+	combo.Drink = Drink
+	combo.Size = Size
+	combo.Price = Price
 
-    return combo
+	return combo
 }
 
 func (c *Combo) Display() {
-    fmt.Println("Entree:", c.Entree)
-    fmt.Println("Side:", c.Side)
-    fmt.Printf("Price: $%g\n", c.Price)
+	fmt.Println("Entree:", c.Entree)
+	fmt.Println("Side:", c.Side)
+	fmt.Printf("Price: $%g\n", c.Price)
 }
 
 func (c *Combo) SetSize(size int) {
-    c.Size = size
-    sizePrice := map[int]float64{
-        1: 0,
-        2: 2,
-        3: 3,
-    }
-    c.Price += sizePrice[size]
+	c.Size = size
+	sizePrice := map[int]float64{
+		1: 0,
+		2: 2,
+		3: 3,
+	}
+	c.Price += sizePrice[size]
 }
 
 func (c *Combo) SetDrink(drink string) {
-    if drink != "" {
-        c.Drink = drink
-    }
+	if drink != "" {
+		c.Drink = drink
+	}
 }
 
 func (c *Combo) DisplayFull() {
-    sizeName := map[int]string{
-        1: "Small",
-        2: "Medium",
-        3: "Large",
-    }
+	sizeName := map[int]string{
+		1: "Small",
+		2: "Medium",
+		3: "Large",
+	}
 
-    fmt.Println("Entree:", c.Entree)
-    fmt.Println("Side:", c.Side)
-    fmt.Println("Size:", sizeName[c.Size])
-    fmt.Println("Drink:", c.Drink)
-    fmt.Printf("Price: $%g", c.Price)
+	fmt.Println("Entree:", c.Entree)
+	fmt.Println("Side:", c.Side)
+	fmt.Println("Size:", sizeName[c.Size])
+	fmt.Println("Drink:", c.Drink)
+	fmt.Printf("Price: $%g", c.Price)
 }
 
 func PromptMenuAndSelectCombo() Combo {
-    var hamburger Combo = NewCombo("Hamburger", "Fries", "Coke", 1, 5.99)
-    var burrito Combo = NewCombo("Burrito", "Rice", "Coke", 1, 4.99)
-    var salad Combo = NewCombo("Salad", "Breadsticks", "Coke", 1, 4.49)
-    menuItems := []Combo{hamburger, burrito, salad}
+	var hamburger Combo = NewCombo("Hamburger", "Fries", "Coke", 1, 5.99)
+	var burrito Combo = NewCombo("Burrito", "Rice", "Coke", 1, 4.99)
+	var salad Combo = NewCombo("Salad", "Breadsticks", "Coke", 1, 4.49)
+	menuItems := []Combo{hamburger, burrito, salad}
 
-    for i := 1; i<= len(menuItems); i++ {
-        fmt.Printf("\nCombo %d:\n", i)
-        menuItems[i - 1].Display()
-    }
+	for i := 1; i <= len(menuItems); i++ {
+		fmt.Printf("\nCombo %d:\n", i)
+		menuItems[i-1].Display()
+	}
 
-    fmt.Printf("\nCombo %d:\n", len(menuItems) + 1)
-    fmt.Println("Custom Order")
-    fmt.Println("Price: $6.99")
+	fmt.Printf("\nCombo %d:\n", len(menuItems)+1)
+	fmt.Println("Custom Order")
+	fmt.Println("Price: $6.99")
 
-    var orderNum int
-    fmt.Println("\nPlease select your order number")
-    fmt.Scanln(&orderNum)
+	var orderNum int
+	fmt.Println("\nPlease select your order number")
+	fmt.Scanln(&orderNum)
 
-    if orderNum == len(menuItems) + 1 {
-        return customMenuChoice()
-    }
+	if orderNum == len(menuItems)+1 {
+		return customMenuChoice()
+	}
 
-    return menuItems[orderNum - 1]
+	return menuItems[orderNum-1]
 }
 
 func UpdateSizeAndDrink(c Combo) Combo {
-    var sizeChoice int
-    fmt.Println("\nSize upgrade prices: Small $0, Medium $2, Large $3")
-    fmt.Println("What size would you like? (1 = Small, 2 = Medium, 3 = Large)")
-    fmt.Scanln(&sizeChoice)
+	var sizeChoice int
+	fmt.Println("\nSize upgrade prices: Small $0, Medium $2, Large $3")
+	fmt.Println("What size would you like? (1 = Small, 2 = Medium, 3 = Large)")
+	fmt.Scanln(&sizeChoice)
 
-    var drinkChoice string
-    fmt.Println("\nWhat would you like to drink? (leave blank to keep Coke as default)")
-    fmt.Scanln(&drinkChoice)
+	var drinkChoice string
+	fmt.Println("\nWhat would you like to drink? (leave blank to keep Coke as default)")
+	fmt.Scanln(&drinkChoice)
 
-    c.SetSize(sizeChoice)
-    c.SetDrink(drinkChoice)
-    return c
+	c.SetSize(sizeChoice)
+	c.SetDrink(drinkChoice)
+	return c
 }
 
 func customMenuChoice() Combo {
-    var entree string
-    fmt.Println("Enter entree")
-    fmt.Scanln(&entree)
+	var entree string
+	fmt.Println("Enter entree")
+	fmt.Scanln(&entree)
 
-    var side string
-    fmt.Println("Enter side")
-    fmt.Scanln(&side)
+	var side string
+	fmt.Println("Enter side")
+	fmt.Scanln(&side)
 
-    var customOrder Combo = NewCombo(entree, side, "Coke", 1, 6.99)
-    return customOrder
+	var customOrder Combo = NewCombo(entree, side, "Coke", 1, 6.99)
+	return customOrder
 }
 
 func main() {
-    fmt.Println("Welcome to Eclectic Drive-Thru. What would you like to order?")
-    var selectedCombo Combo = PromptMenuAndSelectCombo()
+	fmt.Println("Welcome to Eclectic Drive-Thru. What would you like to order?")
+	var selectedCombo Combo = PromptMenuAndSelectCombo()
 
-    selectedCombo = UpdateSizeAndDrink(selectedCombo)
+	selectedCombo = UpdateSizeAndDrink(selectedCombo)
 
-    fmt.Println("\nHere is your order:")
-    selectedCombo.DisplayFull()
-    fmt.Println("\n\nThank you, please pull forward")
+	fmt.Println("\nHere is your order:")
+	selectedCombo.DisplayFull()
+	fmt.Println("\n\nThank you, please pull forward")
 }
