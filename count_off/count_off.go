@@ -29,7 +29,6 @@ func main() {
 			fmt.Println(i)
 		}
 
-		var repeat string
 		fmt.Println("Would you like to run the program again? (Y for yes, N for no)")
 		fmt.Scanln(&repeat)
 	}
