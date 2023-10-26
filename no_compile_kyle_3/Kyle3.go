@@ -19,8 +19,6 @@ Date Completed: 2023-10-25
 Description: Same as above
 ***************************************/
 
-
-
 package main
 
 // include (
@@ -36,15 +34,13 @@ import (
 	"time"
 )
 
-
-
 // Question custom data type definition
 // struct Question type (
 
 // should be type name struct
 // should have curly braces
 type Question struct {
-	Text string
+	Text    string
 	Answer1 string
 	Answer2 string
 	Answer3 string
@@ -55,10 +51,10 @@ type Question struct {
 // Getter for question text
 // func (Question q) GetText(42) string {
 // func  parameter unnecessaray
-func (Question q) GetText() string {
+// should be varName then type
+func (q Question) GetText() string {
 	return q.Text
 }
-
 
 // Display one of the provided answers to the terminal at random
 // declared function wrong
@@ -66,15 +62,17 @@ func (Question q) GetText() string {
 // funcky {q Question} DisplayRandomAnswer() {
 func (q Question) DisplayRandomAnswer() {
 
-	// Generate random answer number between 1 and 5 
-	var randomAnswer bool = rand.Intn(5)+1
+	// Generate random answer number between 1 and 5
+	// var randomAnswer bool = rand.Intn(5)+1
+	// should be an int
+	var randomAnswer int = rand.Intn(5) + 1
 
 	// Display the corresponding answer depending upon the random number
 
-    // should be switch then case
+	// should be switch then case
 	// case randomAnswer {
 
-    switch randomAnswer {
+	switch randomAnswer {
 
 	// 	switch 1:
 	// 		fmt.Println(q.Answer1)
@@ -86,30 +84,35 @@ func (q Question) DisplayRandomAnswer() {
 	// 		fmt.Println(q.Answer4)
 	// 	default:
 	// 		fmt.Println(q.Answer5)
-    // }
+	// }
 
-    case 1:
-        fmt.Println(q.Answer1)
-    case 2:
-        fmt.Println(q.Answer2)
-    case 3:
-        fmt.Println(q.Answer3)
-    case 4:
-        fmt.Println(q.Answer4)
-    default:
-        fmt.Println(q.Answer5)
-    }
+	case 1:
+		fmt.Println(q.Answer1)
+	case 2:
+		fmt.Println(q.Answer2)
+	case 3:
+		fmt.Println(q.Answer3)
+	case 4:
+		fmt.Println(q.Answer4)
+	default:
+		fmt.Println(q.Answer5)
+	}
 }
 
 // init() function runs before any other functions
-func init {
-	
+// needs parentheses for paremeters
+// func init {
+func init() {
+
 	// Seed the random number generator with the current time
 	rand.Seed(int64(time.Now().Nanosecond()))
 }
 
 // Psuedo-constructor function for Question data type
-func NewQuestion(text string answer1 string answer2 string answer3 string answer4 string answer5 string) TheQuestion {
+// paremeters separated by commas
+// func NewQuestion(text string answer1 string answer2 string answer3 string answer4 string answer5 string) TheQuestion {
+// TheQuestion isn't a type, should be Question
+func NewQuestion(text string, answer1 string, answer2 string, answer3 string, answer4 string, answer5 string) Question {
 	var q Question
 	q.Text = text
 	q.Answer1 = answer1
@@ -117,10 +120,10 @@ func NewQuestion(text string answer1 string answer2 string answer3 string answer
 	q.Answer3 = answer3
 	q.Answer4 = answer4
 	q.Answer5 = answer5
-	return TheQuestion
+	// return TheQuestion
+	// should return variable not type
+	return q
 }
-
-
 
 func main() {
 
@@ -137,17 +140,21 @@ func main() {
 	)
 
 	// Instantiate second question object
-	var question2 Question = NewQuestion[
+	// var question2 Question = NewQuestion[
+	// should call function with parentheses
+	var question2 Question = NewQuestion(
 		"What kind of professional career will I have?",
 		"I see you routinely packing your personal belongings in a box and being escorted off the premises, so maybe a mover or something?",
 		"A short one. You should have picked option 3.",
 		"The kind where you receive periodic monetary compensation for services rendered. I'm good, aren't I?",
 		"Professional career...not seeing a lot of that, but I'm getting some lucky lotto numbers...42,27,3,19...and our time is up.",
 		"Looks like you'll have a great career as a psychic, replacing computer-based crystal balls...I mean dentist...definitely dentist.",
-	]
+	)
 
 	// Instantiate third question object
-	var Question question3 = NewQuestion(
+	// should be variable name then type
+	// var Question question3 = NewQuestion(
+	var question3 Question = NewQuestion(
 		"How long will I live?",
 		"Long enough to actually see the last human stronghold fall to the Martian invaders.",
 		"From what I can see, I wouldn't really call your existence \"living\", so what does it matter?",
@@ -156,49 +163,64 @@ func main() {
 		"If you eat right, don't smoke, and exercise regularly then you will be a much healthier corpse after the tragic seesaw accident in a couple years.",
 	)
 
-
-	var again string <- "Y"
-	for again = "Y" && again == "y" {
+	// var again string <- "Y"
+	// assignment operator is =
+	var again string = "Y"
+	// for again = "Y" && again == "y" {
+	// equality operator is ==
+	// can't be both Y and y, should use or
+	for again == "Y" || again == "y" {
 
 		// Declare variable to hold answer to future category question
 		var questionChoice int
 
 		// Asks which future category the user would like to be told about
-		format.Println("1.", question1.GetText)
-		format.Println("2.", question2.GetText)
-		format.Println("3.", question3.GetText)
-		
+		// should be fmt library
+		// member functions should be called with ()
+		fmt.Println("1.", question1.GetText())
+		fmt.Println("2.", question2.GetText())
+		fmt.Println("3.", question3.GetText())
+
 		// Read in and store the user's choice
 		fmt.Scanln(&questionChoice)
-		
+
 		fmt.Println()
 
 		switch questionChoice {
 
-			//Who will I marry answers
-			option 1:
+		//Who will I marry answers
+		// should be case instead of option
+		case 1:
 
-				question1@DisplayRandomAnswer()
-				
-			// What kind of professional career will I have answers
-			option 2:
+			// use . for member functions
+			question1.DisplayRandomAnswer()
 
-				question2*DisplayRandomAnswer()
-			
-			// How long will I live answers
-			option 3;
+		// What kind of professional career will I have answers
+		case 2:
 
-				question3_DisplayRandomAnswer()
+			// use . for member functions
+			question2.DisplayRandomAnswer()
 
-			// Message to display if the user selects an invalid option
-			defaulting:
+		// How long will I live answers
+		// use : instead of ;
+		case 3:
 
-				fmt.Println("All you had to do was push 1, 2, or 3 and you managed to somehow mess that up...")
-				fmt.Println("I see a lot failure in your future.")
+			// use . for member functions
+			question3.DisplayRandomAnswer()
+
+		// Message to display if the user selects an invalid case
+		// defaulting:
+		//          should be default
+		default:
+			fmt.Println("All you had to do was push 1, 2, or 3 and you managed to somehow mess that up...")
+			fmt.Println("I see a lot failure in your future.")
 		}
 
 		// Figure out if they want to run the program again
-		fmt.Println("\nDare to know more? (y = yes, n = no)"}
-		fmt.Scanln(again)
+		// call functions with parentheses
+		fmt.Println("\nDare to know more? (y = yes, n = no)")
+		// fmt.Scanln(again)
+		// should be &variable
+		fmt.Scanln(&again)
 	}
 }
