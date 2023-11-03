@@ -184,16 +184,19 @@ func main() {
 
 		if knight1.isExhausted() {
 			// end the loop if the knight is exhausted, too tired to fight so gets off horse
+			// should be fine to SetMounted here because the correct Mounted status is already
+			// printed and won't call DisplayStats with incorrect info next iteration because
+			// loop will break since knight.GetMounted() should no longer return true
 			knight1.SetMounted(false)
 		}
 
 		if knight2.isExhausted() {
-			// end the loop if the knight is exhausted, too tired to fight so gets off horse
 			knight2.SetMounted(false)
 		}
 	}
 
 	// check if knights are in a "losing state", either have no stamina or off their horse
+	// being exhausted changed mount state of knights, so shouldn't have to check for it here
 	if !knight1.GetMounted() && !knight2.GetMounted() {
 		fmt.Println("It's a draw!")
 	} else if !knight2.GetMounted() {
