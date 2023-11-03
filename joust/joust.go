@@ -168,15 +168,15 @@ func main() {
 	var weapon2 Weapon = NewWeapon(Knight2StaminaCost, Knight2HitChance, Knight2WeaponType)
 	var knight2 Knight = NewKnight(Knight2Name, Knight2Stamina, weapon2)
 
-	var knight1Hit bool
-	var knight2Hit bool
+	var hitKnight1 bool
+	var hitKnight2 bool
 
 	for knight1.GetMounted() && knight2.GetMounted() {
-		knight1Hit = knight1.Joust()
-		knight2.SetMounted(!knight1Hit)
+		hitKnight2 = knight1.Joust()
+		knight2.SetMounted(!hitKnight2)
 
-		knight2Hit = knight2.Joust()
-		knight1.SetMounted(!knight2Hit)
+		hitKnight1 = knight2.Joust()
+		knight1.SetMounted(!hitKnight1)
 
 		knight1.DisplayStats()
 		knight2.DisplayStats()
@@ -204,4 +204,28 @@ func main() {
 	} else if !knight1.GetMounted() {
 		fmt.Println(knight2.GetName(), "wins!")
 	}
+
+	// for knight1.GetMounted() == true && knight2.GetMounted() == true && knight1.GetStamina() > 0 && knight2.GetStamina() > 0 {
+	// 	hitKnight2 = knight1.Joust()
+	// 	if hitKnight2 == true {
+	// 		knight2.SetMounted(false)
+	// 	}
+	//
+	// 	hitKnight1 = knight2.Joust()
+	// 	if hitKnight1 == true {
+	// 		knight2.SetMounted(false)
+	// 	}
+	//
+	// 	knight1.DisplayStats()
+	// 	knight2.DisplayStats()
+	// 	fmt.Println()
+	// }
+	//
+	// if (knight1.GetStamina() <= 0 || knight1.GetMounted() == false) && (knight2.GetStamina() <= 0 || knight2.GetMounted() == false) {
+	// 	fmt.Println("It's a draw!")
+	// } else if knight1.GetStamina() <= 0 || knight1.GetMounted() == false {
+	// 	fmt.Println(knight2.GetName(), "wins!")
+	// } else if knight2.GetStamina() <= 0 || knight2.GetMounted() == false {
+	// 	fmt.Println(knight1.GetName(), "wins!")
+	// }
 }

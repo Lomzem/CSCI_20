@@ -1,1 +1,0 @@
-go run joust.go -Knight1Name="King Arthur" -Knight1Stamina=50 -Knight1WeaponType="Excalibur" -Knight1HitChance=15 -Knight1StaminaCost=10 -Knight2Name="Black Knight" -Knight2Stamina=40 -Knight2WeaponType="Longsword" -Knight2HitChance=10 -Knight2StaminaCost=5
