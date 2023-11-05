@@ -204,28 +204,4 @@ func main() {
 	} else if !knight1.GetMounted() {
 		fmt.Println(knight2.GetName(), "wins!")
 	}
-
-	// for knight1.GetMounted() == true && knight2.GetMounted() == true && knight1.GetStamina() > 0 && knight2.GetStamina() > 0 {
-	// 	hitKnight2 = knight1.Joust()
-	// 	if hitKnight2 == true {
-	// 		knight2.SetMounted(false)
-	// 	}
-	//
-	// 	hitKnight1 = knight2.Joust()
-	// 	if hitKnight1 == true {
-	// 		knight2.SetMounted(false)
-	// 	}
-	//
-	// 	knight1.DisplayStats()
-	// 	knight2.DisplayStats()
-	// 	fmt.Println()
-	// }
-	//
-	// if (knight1.GetStamina() <= 0 || knight1.GetMounted() == false) && (knight2.GetStamina() <= 0 || knight2.GetMounted() == false) {
-	// 	fmt.Println("It's a draw!")
-	// } else if knight1.GetStamina() <= 0 || knight1.GetMounted() == false {
-	// 	fmt.Println(knight2.GetName(), "wins!")
-	// } else if knight2.GetStamina() <= 0 || knight2.GetMounted() == false {
-	// 	fmt.Println(knight1.GetName(), "wins!")
-	// }
 }
