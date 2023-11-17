@@ -1,0 +1,3 @@
+This is the first line of File2.txt, so it should be ignored.
+I'm a great programmer!
+This is the second line of File2.txt, so it should be ignored.
