@@ -10,6 +10,7 @@ package main
 
 import (
 	"bufio"
+	"fmt"
 	"os"
 )
 
@@ -31,27 +32,32 @@ func getFileLine(filepath string, lineNumber int) string {
 }
 
 func main() {
-	var file1_line string = getFileLine("./File1.txt", 3)
-	var file2_line string = getFileLine("./File2.txt", 2)
-
-	var newString string = file1_line + " and " + file2_line
-
-	newFile, err := os.Create("Merged.txt")
-	defer newFile.Close()
-
-	if err != nil {
-		panic("Unable to create Merged.txt")
-	}
-
-	writer := bufio.NewWriter(newFile)
-	_, err = writer.WriteString(newString)
-
-	if err != nil {
-		panic("Unable to fully write to Merged.txt buffer")
-	}
-
-	err = writer.Flush()
-	if err != nil {
-		panic("Unable to write to Merged.txt file")
-	}
+	// var file1_line string = getFileLine("./File1.txt", 3)
+	file, _ := os.Open("./File1.txt")
+	scanner := bufio.NewScanner(file)
+	scanner.Scan()
+	scanner.Scan()
+	fmt.Println(scanner.Text())
+	// var file2_line string = getFileLine("./File2.txt", 2)
+	//
+	// var newString string = file1_line + " and " + file2_line
+	//
+	// newFile, err := os.Create("Merged.txt")
+	// defer newFile.Close()
+	//
+	// if err != nil {
+	// 	panic("Unable to create Merged.txt")
+	// }
+	//
+	// writer := bufio.NewWriter(newFile)
+	// _, err = writer.WriteString(newString)
+	//
+	// if err != nil {
+	// 	panic("Unable to fully write to Merged.txt buffer")
+	// }
+	//
+	// err = writer.Flush()
+	// if err != nil {
+	// 	panic("Unable to write to Merged.txt file")
+	// }
 }
