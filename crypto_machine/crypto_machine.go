@@ -47,9 +47,14 @@ func ReadRotorFile() []Rotor {
 	scanner := bufio.NewScanner(file)
 	for scanner.Scan() {
 		var line string = scanner.Text()
+
+		// Rotor file is in format:
+		// multiplier{space}adder
+
 		var lineSplit = strings.Split(line, " ")
 		multiplier, _ := strconv.Atoi(lineSplit[0])
 		adder, _ := strconv.Atoi(lineSplit[1])
+
 		var rotor Rotor = NewRotor(multiplier, adder)
 		rotorList = append(rotorList, rotor)
 	}
@@ -86,7 +91,9 @@ func (c CryptoMachine) Encrypt(ascii int) int {
 
 func (c CryptoMachine) Decrypt(eInt int) string {
 	var rotors []Rotor = c.GetRotors()
-	// Loop in reverse
+
+	// Loop in reverse because it should
+	// decipher from last rotor to first
 	for i := len(rotors) - 1; i >= 0; i-- {
 		eInt = rotors[i].Decipher(eInt)
 	}
@@ -100,6 +107,8 @@ func RunEncryption(c CryptoMachine, message string) {
 		var encipheredInt int = c.Encrypt(ascii)
 		encryptedMessage = append(encryptedMessage, encipheredInt)
 	}
+
+	// Prints all items in slice with a space in between except last item
 	for i := 0; i < len(encryptedMessage)-1; i++ {
 		fmt.Print(strconv.Itoa(encryptedMessage[i]) + " ")
 	}
@@ -123,7 +132,7 @@ func main() {
 
 	var mode string
 	var message string
-	flag.StringVar(&mode, "mode", "", "encrypt|decrypt")
+	flag.StringVar(&mode, "mode", "", "encrypt | decrypt")
 	flag.StringVar(&message, "message", "", "message to encrypt/decrypt")
 	flag.Parse()
 
